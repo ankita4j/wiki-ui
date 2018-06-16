@@ -9,6 +9,7 @@
   "author": "Ankita Mishra",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "markdown-it": "^8.4.1"
   }
 }
