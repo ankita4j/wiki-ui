@@ -1,0 +1,39 @@
+.wiki-logo {
+    background-image: url(/1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),(min--moz-device-pixel-ratio: 1.5),(min-resolution: 1.5dppx),(min-resolution: 144dpi) {
+    .wiki-logo {
+        background-image: url(/1.png);
+        background-size: 135px auto
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),(min--moz-device-pixel-ratio: 2),(min-resolution: 2dppx),(min-resolution: 192dpi) {
+    .wiki-logo {
+        background-image: url(/1.png);
+        background-size: 135px auto
+    }
+}
+
+#p-logo a {
+    display: block;
+    width: 10em;
+    height: 160px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-decoration: none
+}
+
+#mw-body {
+    padding: 1.25em 1.5em 1.5em 1.5em
+}
+#mw-head {
+    padding: 1.25em 1.5em 1.5em 1.5em
+}
+.mw-panel {
+    width: 10em;
+}
+.parent {
+    display: flex;
+}
