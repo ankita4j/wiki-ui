@@ -15,26 +15,36 @@ app.listen(8000, () => {
 
 app.use(express.static('html'))
 
-app.get('/pages', function(req, res) {
+/** API */
+/* list page */
+app.get('/api/pages', function(req, res) {
     db.listPages("ankita", function (pages) {
         console.log(pages)
         res.send(pages)
     })
 });
-app.get('/page/:pageID', function(req, res) {
+
+/* get page */
+app.get('/api/page/:pageID', function(req, res) {
     db.getPage(req.params.pageID, function (page) {
         console.log(page)
         res.send(page)
     })
 });
 
-
-app.put('/page/:pageID', function (req, res) {
+/* update page */
+app.put('/api/page/:pageID', function (req, res) {
     console.log(req.body)
-
     db.savePage(req.params.pageID, req.body, function(data){
+    res.send(data)
+    });
+})
 
-        res.send("ok")
+/* create new page */
+app.put('/api/page/', function (req, res) {
+    console.log(req.body)
+    db.savePage(null, req.body, function(data){
+    res.send(data)
     });
 })
 
@@ -42,8 +52,27 @@ app.put('/page/:pageID', function (req, res) {
 //     res.sendFile(path.join(__dirname + '/index.html'));
 // });
 
+
+
+/** UI View */
+
 app.get('/p/*', function(req, res){
     res.sendFile(__dirname + '/html/index.html');
+});
+
+
+//Bookmark
+
+app.put('/api/bookmark/:pageID', function (req, res) {
+    db.createBookmark(req.params.pageID, "ankita", function(data){
+        res.send(data)
+    });
+})
+app.get('/api/bookmark/:pageID', function(req, res) {
+    db.getBookmark(req.params.pageID, function (page) {
+        console.log(page)
+        res.send(page)
+    })
 });
 
 

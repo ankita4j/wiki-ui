@@ -25,15 +25,25 @@
     text-decoration: none
 }
 
+#content {
+    border-style: solid;
+    padding: 1em 1em 1em 1em
+}
 #mw-body {
-    padding: 1.25em 1.5em 1.5em 1.5em
+    border-style: solid;
+    padding: 3em 3em 3em 3em
 }
 #mw-head {
+    border-style: solid;
     padding: 1.25em 1.5em 1.5em 1.5em
 }
 .mw-panel {
-    width: 10em;
+    width: 15em;
+    border-style: solid;
+    padding: 1.25em 1.5em 1.5em 1.5em
 }
 .parent {
     display: flex;
 }
+
+

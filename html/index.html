@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
 <script src="/myCtrl.js"></script>
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
 
-<div id="myApp"  class="parent">
+<div id="myApp" class="parent">
 
     <div id="mw-panel" class="mw-panel">
         <div id="p-logo"><a class="wiki-logo" href="/" title="Visit the main page"></a></div>
@@ -21,7 +22,7 @@
                     <li id="n-mainpage-description"><a href="/wiki/Main_Page"
                                                        title="Visit the main page [ctrl-option-z]"
                                                        accesskey="z">Main page</a></li>
-                    <li id="n-contents"><a href="/wiki/Portal:Contents"
+                    <li id="n-contents"><a href="/p/5b270feea5bc0d059405e734"
                                            title="Guides to browsing Wikipedia">Contents</a>
                     </li>
                     <li id="n-featuredcontent"><a href="/wiki/Portal:Featured_content"
@@ -42,7 +43,7 @@
             </div>
         </div>
 
-        <div  id="bookmark">
+        <div id="bookmark">
             <h3>BookMarks</h3>
             <div id="bookmark-list">
                 <ul>
@@ -67,17 +68,19 @@
 
     <div id="right">
 
-        <div id = "mw-head">
-            <button ng-click="getPage()">Get page</button>
-            <button ng-click="savePage()">Save page</button>
-        </div>
 
-        <div id = "mw-body">
-            <input ng-model="title">
-            <div id="content" ng-model="content"></div>
-            <textarea rows="30" cols="100" ng-model="content_text" placeholder="Context"></textarea>
-        </div>
+            <div id="mw-head" >
+                <button ng-click="createPage()">Create page</button>
+                <button ng-click="savePage()">Save page</button>
+                <button ng-click="bookmarkPage()">Bookmark page</button>
+            </div>
 
+            <div id="mw-body">
+                <div id="title"></div>
+                <div id="content"></div>
+                <input ng-model="title_edit">
+                <textarea rows="30" cols="100" ng-model="content_edit" placeholder="enter markdown here"></textarea>
+            </div>
     </div>
 
 </div>

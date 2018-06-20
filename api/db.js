@@ -34,7 +34,9 @@ exports.getPage = function(id, callback){
 }
 
 exports.savePage = function(id, doc, cb){
-    doc['_id'] = ObjectId(id)
+    if(id){
+        doc['_id'] = ObjectId(id)
+    }
 
     console.log(doc)
 
@@ -44,18 +46,89 @@ exports.savePage = function(id, doc, cb){
         dbo.collection("page").save(doc,{},function (err, result) {
             if (err) throw err;
             db.close();
-            cb(result.result)
+            if(id)
+                cb(id)
+            else
+                cb(result['ops'][0]['_id'])
+
         });
     });
 }
 
 // ggg= this
-
-// ggg.savePage("5b260aae8a3b28ce1664f206",{title: "wiki-ui", content:"hello"}, function (result) {
+//
+// ggg.savePage("5b26d93d8fa04203bfc1761e",{title: "wiki-ui", content:"hello"}, function (result) {
 //     console.log(result)
 //
 // })
 
+
+exports.getBookmarks = function(user, callback){
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("wiki-db");
+        dbo.collection('bookmark').aggregate([
+        {
+            $match: {
+              user:user
+            }
+        },
+        {
+            $lookup: {
+                    localField: "pageId",
+                    from: "page",
+                    foreignField: "_id",
+                    as: "info"
+            }
+        },
+        { "$unwind": "$info" },
+        { "$project": {
+            "info._id": 1,
+            "info.title": 1,
+            }
+        }
+        ]).toArray(function(err, result) {
+            if (err) throw err;
+            db.close();
+            callback(result)
+        });
+    });
+}
+
+exports.createBookmark = function(pageId, user, cb){
+    var doc={
+             pageId : ObjectId(pageId),
+             user : user
+             }
+
+    console.log(doc)
+
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("wiki-db");
+        var query = { pageId : ObjectId(pageId),
+                      user : user
+                    };
+        dbo.collection("bookmark").findOne(query,function(err, result) {
+                                                           if (err) throw err;
+                                                           db.close();
+                                                           if(result)
+                                                              cb(result._id)
+                                                           else
+                                                               dbo.collection("bookmark").save(doc,function (err, result) {
+                                                                          if (err) throw err;
+                                                                          db.close();
+                                                                          cb(result['ops'][0]['_id'])
+                                                                      });
+
+
+                                                       });
+
+    });
+}
+
+//this.getBookmarks("ankita",function(result){console.log(result)});
+this.createBookmark("5b270e97a6bdb60571063efe","ankita",function(id){console.log(id)});
 // ggg.listPages("ankita", function (pageList) {
 //     console.log(pageList.length)
 //     console.log(pageList[0])
