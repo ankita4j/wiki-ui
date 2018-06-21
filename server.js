@@ -41,10 +41,6 @@ app.put('/api/page/', function (req, res) {
     });
 })
 
-// app.get('/p/*', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/index.html'));
-// });
-
 
 
 /** UI View */
