@@ -12,7 +12,6 @@ npm install
 node api/dbLoader.js
 npm start
 ```
-
 Run the app on http://localhost:8000
 
 ## Architechture
@@ -28,6 +27,12 @@ Collection Page
  * /api/page/:pageID - PUT api to Update a page(wiki).
  * /api/bookmark/:pageID - PUT api to Create a bookmark for user "ankita"(hardcoded)
  * /api/bookmarks - GET api to get all bookmarks for user "ankita"(hardcoded)
+ 
+## Technologies
+* Mongo DB
+* Node Js -  Express Server, Mongo client, markdown-it
+* Angular JS
+
  
 
 
