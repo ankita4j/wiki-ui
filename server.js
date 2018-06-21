@@ -16,13 +16,6 @@ app.listen(8000, () => {
 app.use(express.static('html'))
 
 /** API */
-/* list page */
-app.get('/api/pages', function(req, res) {
-    db.listPages("ankita", function (pages) {
-        console.log(pages)
-        res.send(pages)
-    })
-});
 
 /* get page */
 app.get('/api/page/:pageID', function(req, res) {
