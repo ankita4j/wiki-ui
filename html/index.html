@@ -13,54 +13,14 @@
 <div id="myApp" class="parent">
 
     <div id="mw-panel" class="mw-panel">
+
         <div id="p-logo"><a class="wiki-logo" href="/" title="Visit the main page"></a></div>
 
-        <div id="history">
-            <h3>History</h3>
-            <div id="histroy-list">
-                <ul>
-                    <li id="n-mainpage-description"><a href="/wiki/Main_Page"
-                                                       title="Visit the main page [ctrl-option-z]"
-                                                       accesskey="z">Main page</a></li>
-                    <li id="n-contents"><a href="/p/5b270feea5bc0d059405e734"
-                                           title="Guides to browsing Wikipedia">Contents</a>
-                    </li>
-                    <li id="n-featuredcontent"><a href="/wiki/Portal:Featured_content"
-                                                  title="Featured content – the best of Wikipedia">Featured content</a>
-                    </li>
-                    <li id="n-currentevents"><a href="/wiki/Portal:Current_events"
-                                                title="Find background information on current events">Current events</a>
-                    </li>
-                    <li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random article [ctrl-option-x]"
-                                             accesskey="x">Random article</a></li>
-                    <li id="n-sitesupport"><a
-                            href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_en.wikipedia.org&amp;uselang=en"
-                            title="Support us">Donate to Wikipedia</a></li>
-                    <li id="n-shoplink"><a href="//shop.wikimedia.org" title="Visit the Wikipedia store">Wikipedia
-                        store</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
         <div id="bookmark">
-            <h3>BookMarks</h3>
+            <h3>Bookmarks</h3>
             <div id="bookmark-list">
                 <ul>
-                    <li id="n-help"><a href="/wiki/Help:Contents"
-                                       title="Guidance on how to use and edit Wikipedia">Help</a>
-                    </li>
-                    <li id="n-aboutsite"><a href="/wiki/Wikipedia:About" title="Find out about Wikipedia">About
-                        Wikipedia</a></li>
-                    <li id="n-portal"><a href="/wiki/Wikipedia:Community_portal"
-                                         title="About the project, what you can do, where to find things">Community
-                        portal</a></li>
-                    <li id="n-recentchanges"><a href="/wiki/Special:RecentChanges"
-                                                title="A list of recent changes in the wiki [ctrl-option-r]"
-                                                accesskey="r">Recent
-                        changes</a></li>
-                    <li id="n-contactpage"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us"
-                                              title="How to contact Wikipedia">Contact page</a></li>
+                    <li ng-repeat="bookmark in bookmarks"><a href="/p/{{bookmark.info._id}}" title="{{bookmark.info.title}}">{{bookmark.info.title}}</a></li>
                 </ul>
             </div>
         </div>
@@ -70,16 +30,33 @@
 
 
             <div id="mw-head" >
-                <button ng-click="createPage()">Create page</button>
-                <button ng-click="savePage()">Save page</button>
-                <button ng-click="bookmarkPage()">Bookmark page</button>
+                <button ng-click="createPage()">Create New wiki</button>
+                <button ng-click="bookmarkPage()">Bookmark wiki</button>
+                <button ng-click="editPage()">Edit wiki</button>
             </div>
 
-            <div id="mw-body">
+            <div id="mw-body" ng-show="showBody">
                 <div id="title"></div>
                 <div id="content"></div>
-                <input ng-model="title_edit">
-                <textarea rows="30" cols="100" ng-model="content_edit" placeholder="enter markdown here"></textarea>
+            </div>
+
+            <div id="mw-edit" ng-show="showEdit">
+                <div id="edit-header">
+                    <button ng-click="savePage()">Save page</button>
+                    <button ng-click="cancelEdit()">Cancel</button>
+                </div>
+                <div id="edit-title">
+                    Title:
+                    <input ng-model="title_edit">
+                </div>
+                <div id="edit-content">
+                    <textarea rows="200" cols="150" ng-model="content_edit" placeholder="enter markdown here"></textarea>
+                </div>
+                <div id="edit-footer">
+                    <button ng-click="savePage()">Save page</button>
+                    <button ng-click="cancelEdit()">Cancel</button>
+                </div>
+
             </div>
     </div>
 

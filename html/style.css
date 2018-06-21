@@ -24,26 +24,53 @@
     background-position: center center;
     text-decoration: none
 }
-
+#right {
+    min-width: 50em;
+    max-width: 100em;
+}
+#mw-head {
+    border-style: transparent;
+    padding: 1.25em 1.5em 1.5em 1.5em
+}
+#mw-body {
+    border-style: transparent;
+    padding: 3em 3em 3em 3em
+}
 #content {
     border-style: solid;
     padding: 1em 1em 1em 1em
 }
-#mw-body {
-    border-style: solid;
-    padding: 3em 3em 3em 3em
-}
-#mw-head {
-    border-style: solid;
-    padding: 1.25em 1.5em 1.5em 1.5em
-}
+
+
 .mw-panel {
-    width: 15em;
-    border-style: solid;
+    width: 10em;
+    border-style: transparent;
     padding: 1.25em 1.5em 1.5em 1.5em
 }
 .parent {
     display: flex;
+}
+
+#mw-edit {
+    border-style: solid;
+}
+#edit-header {
+    border-style: transparent;
+    background: grey;
+    padding: 1.25em 1.0em 1.0em .25em
+}
+#edit-title {
+    border-style: transparent;
+    padding: 1.25em 1.0em 1.0em .25em
+}
+#edit-content {
+    border-style: transparent;
+    padding: 1.25em 1.0em 1.0em .25em
+}
+#edit-footer {
+    border-style: transparent;
+    background: grey;
+    padding: 1.25em 1.0em 1.0em .25em
 }
 
 

@@ -68,8 +68,8 @@ app.put('/api/bookmark/:pageID', function (req, res) {
         res.send(data)
     });
 })
-app.get('/api/bookmark/:pageID', function(req, res) {
-    db.getBookmark(req.params.pageID, function (page) {
+app.get('/api/bookmarks', function(req, res) {
+    db.getBookmarks("ankita", function (page) {
         console.log(page)
         res.send(page)
     })
